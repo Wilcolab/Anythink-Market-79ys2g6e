@@ -10,6 +10,15 @@ The project contains a simple node.js application that exposes REST APIs to perf
 
 In order to run the app use `npm start`
 
+## Features
+- Basic Mathematical Operations: Addition, Subtraction, Multiplication, and Division
+- REST API endpoints for each operation
+- Input validation for integer values
+- Error handling for invalid requests
+- Automated tests using Mocha and Chai
+- Easy-to-use command to start the application (`npm start`)
+- Extensible codebase for adding new operations
+
 ## Acknowledgements
 
 A special thanks to the following awesome Hubbers who have contributed in many different ways to this repository. 
