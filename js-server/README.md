@@ -49,7 +49,10 @@ To build and run the server using Docker:
 
 ### Endpoints
 
+- `GET /` - Returns "Hello World"
 - `GET /health` - Health check endpoint
+- `GET /tasks` - Returns the task list
+- `POST /tasks` - Adds a task to the task list (requires JSON body with `text` field)
 - All other routes return 404
 
 The server runs on port 8001 and can be accessed at `http://localhost:8001`.
