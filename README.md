@@ -1,39 +1,82 @@
-# Python Server
+# Multi-Server Application
 
-This project contains a FastAPI server implemented in Python. It provides two routes for managing a task list.
+This project contains both a Python FastAPI server and a Node.js Express server, each running on different ports.
 
 ## Project Structure
 
 The project has the following files and directories:
 
-- `python-server/src/main.py`: This file contains the implementation of the FastAPI server with two routes. It handles adding a task to a list and retrieving the list.
+### Python Server (Port 8000)
+- `python-server/src/main.py`: FastAPI server implementation with task management routes
+- `python-server/src/__init__.py`: Empty file marking the `src` directory as a Python package
+- `python-server/requirements.txt`: Python dependencies for the FastAPI server
+- `python-server/Dockerfile`: Docker configuration for the Python server
 
-- `python-server/src/__init__.py`: This file is an empty file that marks the `src` directory as a Python package.
+### Node.js Server (Port 8001)
+- `js-server/index.js`: Express.js server implementation with basic middleware
+- `js-server/package.json`: Node.js dependencies and scripts
+- `js-server/Dockerfile`: Production Docker configuration for the Node.js server
+- `js-server/Dockerfile.dev`: Development Docker configuration with nodemon
+- `js-server/README.md`: Detailed documentation for the Node.js server
 
-- `python-server/requirements.txt`: This file lists the dependencies required for the FastAPI server and other dependencies.
-
-- `python-server/Dockerfile`: This file is used to build a Docker image for the FastAPI server. It specifies the base image, copies the source code into the image, installs the dependencies, and sets the command to run the server.
-
-- `docker-compose.yml`: This file is used to define and run multi-container Docker applications. It specifies the services to run, their configurations, and any dependencies between them.
+### Docker Configuration
+- `docker-compose.yml`: Multi-container Docker application configuration for both servers
 
 ## Getting Started
 
-To run the FastAPI server using Docker, follow these steps:
+To run both servers using Docker Compose, follow these steps:
 
-- Build and start the Docker containers by running the following command:
+1. **Build and start both servers:**
+   ```shell
+   docker-compose up
+   ```
+   
+   This will build and start both the Python server (port 8000) and Node.js server (port 8001).
 
-  ```shell
-  docker compose up
-  ```
+2. **Run in detached mode (background):**
+   ```shell
+   docker-compose up -d
+   ```
 
-  This command will build the Docker image for the FastAPI server and start the containers defined in the `docker-compose.yml` file.
+3. **Stop the services:**
+   ```shell
+   docker-compose down
+   ```
 
-- The FastAPI server should now be running. You can access at port `8000`.
+4. **Rebuild the services:**
+   ```shell
+   docker-compose build
+   ```
+
+## Server Access
+
+- **Python Server (FastAPI)**: http://localhost:8000
+- **Node.js Server (Express)**: http://localhost:8001
 
 ## API Routes
 
-The FastAPI server provides the following API routes:
+### Python Server (Port 8000)
+- `POST /tasks`: Adds a task to the task list
+- `GET /tasks`: Retrieves the task list
 
-- `POST /tasks`: Adds a task to the task list. The request body should contain the task details.
+### Node.js Server (Port 8001)
+- `GET /health`: Health check endpoint that returns server status
+- All other routes return 404
 
-- `GET /tasks`: Retrieves the task list.
+## Development
+
+For individual development of each server:
+
+### Python Server
+```shell
+cd python-server
+pip install -r requirements.txt
+uvicorn src.main:app --reload --host 0.0.0.0 --port 8000
+```
+
+### Node.js Server
+```shell
+cd js-server
+yarn install
+yarn start  # Uses nodemon for auto-restart
+```
