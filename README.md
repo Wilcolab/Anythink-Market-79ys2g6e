@@ -52,7 +52,24 @@ To run both servers using Docker Compose, follow these steps:
 
 - **Python Server (FastAPI)**: http://localhost:8000
 - **Node.js Server (Express)**: http://localhost:8001
+## Migration Details
 
+The Node.js server now fully replaces the Python server for all task management APIs. The Python FastAPI server remains available for legacy or demonstration purposes but no longer handles task-related endpoints.
+
+### Key Changes
+
+- **Task Management**: All `/tasks` endpoints are now handled exclusively by the Node.js Express server.
+- **Primary API**: The Node.js server is the main entry point for API consumers.
+- **Python Server**: Only serves a basic root endpoint (`GET /`) for compatibility.
+
+### Node.js Server Features
+
+- Centralized task management logic
+- Health check endpoint (`/health`)
+- Improved error handling and 404 responses
+- Ready for production and development via Docker
+
+For more details, see [`js-server/README.md`](js-server/README.md).
 ## API Routes
 
 ### Python Server (Port 8000)
