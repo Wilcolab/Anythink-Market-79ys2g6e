@@ -56,3 +56,13 @@ To build and run the server using Docker:
 - All other routes return 404
 
 The server runs on port 8001 and can be accessed at `http://localhost:8001`.
+## Development Container Features
+
+This project is designed to work seamlessly in a development container with the following tools pre-installed:
+
+- **Docker CLI**: Manage containers using a dedicated Docker daemon inside the dev container.
+- **GitHub CLI (`gh`)**: Interact with GitHub from the terminal. Note: Use multiple `-f` flags for hierarchical keys with `gh api -f`.
+- **Node.js, npm, and ESLint**: Ready for Node.js and JavaScript development.
+- **SSH Server**: Connect via SSH, SFTP, or SSHFS. Set a password on first use and forward the SSH port for external access.
+
+For more details, see the `.devcontainer` folder.
