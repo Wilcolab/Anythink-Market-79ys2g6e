@@ -56,12 +56,18 @@ To run both servers using Docker Compose, follow these steps:
 ## API Routes
 
 ### Python Server (Port 8000)
-- `POST /tasks`: Adds a task to the task list
-- `GET /tasks`: Retrieves the task list
+- `GET /` - Returns "Hello World"
+- `POST /tasks` - Adds a task to the task list
+- `GET /tasks` - Retrieves the task list
 
-### Node.js Server (Port 8001)
-- `GET /health`: Health check endpoint that returns server status
+### Node.js Server (Port 8001) - **Primary API Server**
+- `GET /` - Returns "Hello World"
+- `GET /health` - Health check endpoint that returns server status
+- `GET /tasks` - Returns the task list
+- `POST /tasks` - Adds a task to the task list (requires JSON body with `text` field)
 - All other routes return 404
+
+**Note**: The task management endpoints have been migrated from the Python server to the Node.js server. The Node.js server now serves as the primary API server with full task management functionality.
 
 ## Development
 
